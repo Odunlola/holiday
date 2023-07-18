@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="detail__img">
+    <img src="{{destination.img}}" alt="{{destination.name}}" />
+</div>
+<div class="detail__name">
+    {% if destination.verified_destination %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>Verified</span>
+    </div>
+    {% endif %}
+    <h1 class="name">{{destination.name}}</h1>
+</div>
+<div class="detail__container">
+    <div class="detail__spots mb-5">
+        <h3 class="name is-3">spots</h3>
+        <form class="mb-5" action="{% url 'spot_create' destination.pk %}" method="post">
+            {% csrf_token %}
+            <div class="field has-addons">
+                <div class="control">
+                    <input
+                        class="input"
+                        type="text"
+                        name="name"
+                        placeholder="Name"
+                        required
+                    />
+                </div>
+                <div class="control">
+                    <input
+                    class="input"
+                    type="text"
+                    name="name"
+                    placeholder="image"
+                    required
+                    />
+                </div>
+                <div class="control">
+                    <input class="button is-primary" type="submit" value="Add spot" />
+                </div>
+            </div>
+        </form>
+        {% for spot in destination.spots.all %}
+        <div class="spot">
+            <span>{{forloop.counter}}</span>
+            <span><b>{{spot.name}}</b></span>
+            <span>{{spot.image}}</span>
+            <span>
+                <div class="dropdown">
+                    <div class="dropdown-trigger">
+                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                            <span>Add to List</span>
+                            <span class="icon is-small">
+                                <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                        <div class="dropdown-content">
+                            {% for List in Lists %}
+                            <a href="{% url 'List_spot_assoc' List.pk spot.pk %}?assoc=add" class="dropdown-item">{{ List.name }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </span>
+        </div>
+        {% empty %}
+        <article class="message">
+            <div class="message-header">
+                <p>No spots Available</p>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+    <div class="buttons">
+        <a href="{% url 'destination_update' destination.pk %}" class="button is-info">
+            <span class="icon">
+                <i class="fas fa-edit"></i>
+            </span>
+        </a>
+        <span class="icon">
+            <a href="{% url 'destination_delete' destination.pk %}" class="button is-danger">
+                <i class="fas fa-trash-alt"></i>
+        </span>
+        </a>
+    </div>
+    <div class="detail__about">
+        <h4 class="name is-4">About</h4>
+        <p>{{destination.bio}}</p>
+    </div>
+</div>
+{% endblock %}

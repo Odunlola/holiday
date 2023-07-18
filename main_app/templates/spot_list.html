@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% comment %} for head title tags and helping us with SEO {% endcomment %}
+{% block title %}Destination{% endblock  %}
+
+{% block content %}
+{% for spot in spots %}
+<h1>{{spot.title}}</h1>
+{% empty %}
+<p>No Hot Destinations Spots Available</p>
+{% endfor %}
+{% endblock %}
