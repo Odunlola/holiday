@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+# exit on error
+set -o errexit
+
 #Install dependencies
 pip3 install -r deps.txt
 
