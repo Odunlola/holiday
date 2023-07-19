@@ -1,9 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="detail__img">
-    <img src="{{destination.img}}" alt="{{destination.name}}" />
+
+<style>
+    img {
+      width: 300px;
+      height: 300px;
+      border: solid 2px black;
+    }
+
+    .big {
+      width: 1000px;
+      height: 350px;
+      border: solid 2px black;
+    }
+    </style>
+
+<h4>{{destination.name}}</h4> 
+<div class="detail__image">
+    <img class="big"src="{{destination.image}}" alt="{{destination.name}}" />
 </div>
-<div class="detail__name">
     {% if destination.verified_destination %}
     <div class="icon-text">
         <span class="icon has-text-info">
@@ -11,13 +26,8 @@
         </span>
         <span>Verified</span>
     </div>
-    {% endif %}
-    <h1 class="name">{{destination.name}}</h1>
 </div>
-<div class="detail__container">
-    <div class="detail__spots mb-5">
-        <h3 class="name is-3">spots</h3>
-        <form class="mb-5" action="{% url 'spot_create' destination.pk %}" method="post">
+ <form class="mb-5" action="{% url 'spot_create' destination.pk %}" method="post">
             {% csrf_token %}
             <div class="field has-addons">
                 <div class="control">
@@ -43,11 +53,31 @@
                 </div>
             </div>
         </form>
+        <div class="buttons">
+            <a href="{% url 'destination_update' destination.pk %}" class="button is-info">
+                <span class="icon">
+                    <i class="fas fa-edit"></i>
+                </span>
+            </a>
+            <span class="icon">
+                <a href="{% url 'destination_delete' destination.pk %}" class="button is-danger">
+                    <i class="fas fa-trash-alt"></i>
+            </span>
+            </a>
+        </div>
+        <div class="detail__about">
+            <h4 class="name is-4">About</h4>
+            <p>{{destination.description}}</p>
+        </div>
+    </br>
+        <h4 class="name is-4">Spots or Activities around Town</h4>
         {% for spot in destination.spots.all %}
         <div class="spot">
-            <span>{{forloop.counter}}</span>
+            <span>{{forloop.counter}}</span>.
             <span><b>{{spot.name}}</b></span>
-            <span>{{spot.image}}</span>
+        </br>
+            <span><img src="{{spot.image}}"></span>
+            <span><p>{{spot.description}}</p></span>
             <span>
                 <div class="dropdown">
                     <div class="dropdown-trigger">
@@ -76,21 +106,7 @@
         </article>
         {% endfor %}
     </div>
-    <div class="buttons">
-        <a href="{% url 'destination_update' destination.pk %}" class="button is-info">
-            <span class="icon">
-                <i class="fas fa-edit"></i>
-            </span>
-        </a>
-        <span class="icon">
-            <a href="{% url 'destination_delete' destination.pk %}" class="button is-danger">
-                <i class="fas fa-trash-alt"></i>
-        </span>
-        </a>
-    </div>
-    <div class="detail__about">
-        <h4 class="name is-4">About</h4>
-        <p>{{destination.bio}}</p>
-    </div>
+   
 </div>
+{% endif %}
 {% endblock %}

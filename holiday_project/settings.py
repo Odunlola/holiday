@@ -52,11 +52,12 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
 
-    # 'django.contrib.sites',
+    'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount', 
     'allauth.socialaccount.providers.google', #for google auth
+    # 'reviews',
 
 ]
 
@@ -67,7 +68,7 @@ AUTHENTICATION_BACKENDS = (
  'django.contrib.auth.backends.ModelBackend', 
   
  #used for social authentications
- 'allauth.account.auth_backends.AuthenticationBackend',
+#  'allauth.account.auth_backends.AuthenticationBackend',
  )
 
 
@@ -127,8 +128,6 @@ DATABASES = {
         conn_health_checks=True
     ),
 }
-
-
 
 
 # Password validation

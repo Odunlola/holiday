@@ -16,5 +16,6 @@ urlpatterns = [
     path('destinations/<int:pk>/spots/new', views.SpotCreate.as_view(), name="spot_create"),
     path('lists/<int:pk>/spots/<int:spot_pk>/', views.ListAssoc.as_view(), name="list_spot_assoc"),
     path("register/", views.register_request, name="register"),
-    path("login", views.login_request, name="login")
+    path("login", views.login_request, name="login"),
+    path("logout", views.logout_request, name= "logout"),
 ]

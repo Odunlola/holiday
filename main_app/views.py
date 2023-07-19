@@ -5,7 +5,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic import DetailView
 from .models import Destination, Spot, List
 
-from django.contrib.auth import login, authenticate #add this
+from django.contrib.auth import login, authenticate, logout #add this
 from django.contrib import messages
 from .forms import NewUserForm
 from django.contrib.auth.forms import AuthenticationForm #add this
@@ -27,12 +27,12 @@ class SpotList(TemplateView):
         return context
 
 class SpotCreate(View):
-    def post(self, request, pk):
+    def post(self, request, pk, **kwargs):
         name = request.POST.get('name')
-        image = request.POST.get('image')
+        image = request.FILES.get('image')
         description =request.POST.get('description') 
         destination = Destination.objects.get(pk=pk)
-        Spot.objects.create(name=name, image=image, description=description)
+        Spot.objects.create(name=name, image=image, description=description, destination=destination)
         return redirect('destination_detail', pk=pk)
 
 
@@ -62,7 +62,7 @@ class DestinationDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["lists"] = list.objects.all()
+        context["lists"] = List.objects.all()
         return context
 
 class DestinationUpdate(UpdateView):
@@ -74,7 +74,7 @@ class DestinationUpdate(UpdateView):
 
 class DestinationDelete(DeleteView):
     model = Destination
-    template_name = "destination_delete_confirmation.html"
+    template_name = "destination_delete.html"
     success_url = '/destinations/'
 
 class ListAssoc(View):
@@ -92,12 +92,13 @@ def register_request(request):
 		form = NewUserForm(request.POST)
 		if form.is_valid():
 			user = form.save()
-			login(request, user)
+			login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 			messages.success(request, "Registration successful." )
 			return redirect('home')
 		messages.error(request, "Unsuccessful registration. Invalid information.")
 	form = NewUserForm()
 	return render (request=request, template_name="register.html", context={"register_form":form})
+
 
 
 def login_request(request):
@@ -110,10 +111,16 @@ def login_request(request):
 			if user is not None:
 				login(request, user)
 				messages.info(request, f"You are now logged in as {username}.")
-				return redirect("main:homepage")
+				return redirect('home')
 			else:
 				messages.error(request,"Invalid username or password.")
 		else:
 			messages.error(request,"Invalid username or password.")
 	form = AuthenticationForm()
 	return render(request=request, template_name="login.html", context={"login_form":form})
+
+
+def logout_request(request):
+	logout(request)
+	messages.info(request, "You have successfully logged out.") 
+	return redirect('home')

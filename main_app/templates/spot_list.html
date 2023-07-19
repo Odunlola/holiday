@@ -1,12 +1,34 @@
 {% extends 'base.html' %}
-
-{% comment %} for head title tags and helping us with SEO {% endcomment %}
-{% block title %}Destination{% endblock  %}
-
 {% block content %}
-{% for spot in spots %}
-<h1>{{spot.title}}</h1>
-{% empty %}
-<p>No Hot Destinations Spots Available</p>
-{% endfor %}
+<h4>Best Vacation Spots</h4>
+
+<form class="mb-5" method="get">
+  <div class="field has-addons">
+    <div class="control">
+      <!--  Our input will search by name of spot  -->
+      <input class="input" type="text" name="name" placeholder="name" />
+    </div>
+    <div class="control">
+      <input class="button is-success" type="submit" value="Search" />
+    </div>
+  </div>
+  <!--  This anchor tag will redirect back to spot list without a query param -->
+  <a class="button is-dark" href="{% url 'spot_list' %}">Clear Search</a>
+</form>
+<div class="gallery">
+  {% for spot in spot %}
+  <a href="{% url 'spot_detail' spot.pk %}">
+    <div class="spot">
+        <span>{{forloop.counter}}</span>.
+        <span><b>{{spot.name}}</b></span>
+  </a>
+  {% empty %}
+    <article class="message">
+        <div class="message-header">
+            <p>No spot Available</p>
+        </div>
+    </article>
+  {% endfor %}
+</div>
+
 {% endblock %}
