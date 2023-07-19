@@ -3,7 +3,7 @@
 set -o errexit
 
 #Install dependencies
-pip3 install -r deps.txt
+pip3 install -r requirements.txt
 
 python manage.py collectstatic --no-input
 #Run migrations
