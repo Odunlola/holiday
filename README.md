@@ -23,7 +23,6 @@ As a user, I want to be able to create an account and log in, so that I can have
 
 WIREFRAME
 
- ![image](https://i.imgur.com/yNvfHHq.png)
 MILESTONES
 1.Project Setup and Database Design -  7/12/2023
 •	Set up the Django project structure and environment.
@@ -51,6 +50,8 @@ MILESTONES
 5. Deployment and Testing: 7/18/2023
 •	Prepare the app for deployment to onrender.
 
+
+ ![image](https://i.imgur.com/yNvfHHq.png)
 
 DATA MODELS
                                                   
