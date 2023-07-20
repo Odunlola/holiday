@@ -92,7 +92,7 @@ def register_request(request):
 		form = NewUserForm(request.POST)
 		if form.is_valid():
 			user = form.save()
-			login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+			login(request, user)
 			messages.success(request, "Registration successful." )
 			return redirect('home')
 		messages.error(request, "Unsuccessful registration. Invalid information.")
@@ -114,8 +114,6 @@ def login_request(request):
 				return redirect('home')
 			else:
 				messages.error(request,"Invalid username or password.")
-		else:
-			messages.error(request,"Invalid username or password.")
 	form = AuthenticationForm()
 	return render(request=request, template_name="login.html", context={"login_form":form})
 
