@@ -12,12 +12,11 @@
       <input class="button is-success" type="submit" value="Search" />
     </div>
   </div>
-  <!--  This anchor tag will redirect back to spot list without a query param -->
+   <!-- This anchor tag will redirect back to spot list without a query param -->
   <a class="button is-dark" href="{% url 'spot_list' %}">Clear Search</a>
 </form>
 <div class="gallery">
-  {% for spot in spot %}
-  <a href="{% url 'spot_list' spot.pk %}">
+  {% for spot in spots %}
     <div class="card">
       <div class="card-image">
         <figure class="image is-square">
