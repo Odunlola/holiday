@@ -20,8 +20,8 @@ As a user, I want to be able to read and write reviews for holiday destinations,
 
 As a user, I want to be able to create an account and log in, so that I can have a personalized experience, access my saved destinations, and manage my reviews.
 
-
 WIREFRAME
+![image](https://imgur.com/jqDZm8f)
 
 MILESTONES
 1.Project Setup and Database Design -  7/12/2023
@@ -50,9 +50,5 @@ MILESTONES
 5. Deployment and Testing: 7/18/2023
 •	Prepare the app for deployment to onrender.
 
-
- ![image](https://i.imgur.com/yNvfHHq.png)
-
-DATA MODELS
-                                                  
-![image](https://github.com/Odunlola/holiday/assets/120194465/fef56dcb-2a50-4c88-a63b-3cde43e193bb)
+DATA MODELS                                            
+![image](https://imgur.com/HQWm4fh)
