@@ -17,10 +17,17 @@
 </form>
 <div class="gallery">
   {% for spot in spot %}
-  <a href="{% url 'spot_detail' spot.pk %}">
-    <div class="spot">
-        <span>{{forloop.counter}}</span>.
-        <span><b>{{spot.name}}</b></span>
+  <a href="{% url 'spot_list' spot.pk %}">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-square">
+          <img src="{{spot.image}}" alt="{{spot.name}}" />
+        </figure>
+      </div>
+      <div class="card-header">
+        <p class="card-header-title">{{spot.name}}</p>
+      </div>
+    </div>
   </a>
   {% empty %}
     <article class="message">

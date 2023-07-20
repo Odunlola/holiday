@@ -5,8 +5,8 @@
 
 {% block content %}
 <h1 class="title pt-5">Hot Destination Spots</h1>
-
-<form class="mb-5" method="get">
+</br>
+<form>
   <div class="field has-addons">
     <div class="control">
       <!--  Our input will search by name of destination  -->
@@ -19,6 +19,7 @@
   <!--  This anchor tag will redirect back to destination list without a query param -->
   <a class="button is-dark" href="{% url 'destination_list' %}">Clear Search</a>
 </form>
+</br>
 <div class="gallery">
   {% for destination in destinations %}
   <a href="{% url 'destination_detail' destination.pk %}">
