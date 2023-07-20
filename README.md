@@ -21,6 +21,7 @@ As a user, I want to be able to read and write reviews for holiday destinations,
 As a user, I want to be able to create an account and log in, so that I can have a personalized experience, access my saved destinations, and manage my reviews.
 
 WIREFRAME
+
 ![image](https://imgur.com/jqDZm8f)
 
 MILESTONES
