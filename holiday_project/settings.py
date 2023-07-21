@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 import os,django
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "my_app.settings")
-# django.setup()
 import dj_database_url
 
 from pathlib import Path
@@ -182,3 +180,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'main_app/static')]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+export DJANGO_SETTINGS_MODULE=mysite.settings
+django-admin runserver
