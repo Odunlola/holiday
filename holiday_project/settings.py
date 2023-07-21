@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-import os
+import os,django
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "my_app.settings")
+# django.setup()
 import dj_database_url
 
 from pathlib import Path
@@ -41,6 +43,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -48,7 +51,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main_app',
      
-    'django.contrib.admin',
 
     'crispy_forms',
     'crispy_bootstrap5',
