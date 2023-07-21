@@ -1,8 +1,6 @@
 from django.urls import path
 from .import views
 
-# app_name = "main" 
-
 # this like app.use() in express
 urlpatterns = [
     path('', views.Home.as_view(), name="home"),
