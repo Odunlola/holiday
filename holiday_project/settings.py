@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-import os,django
+import os
 import dj_database_url
 
 from pathlib import Path
@@ -181,5 +181,4 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'main_app/static')]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-export DJANGO_SETTINGS_MODULE=mysite.settings
-django-admin runserver
+
